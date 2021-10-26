@@ -7,9 +7,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.company.Model2_Board.board.BoardDAO;
+import com.company.Model2_Board.board.BoardDO;
 import com.company.Model2_Board.user.UserDAO;
 import com.company.Model2_Board.user.UserDO;
 
+import java.util.List;
 /**
  * doGet(get방식), doPost(post방식) 부분, 사용자정의 메소드 process 개발자가 코딩해주면됨.
  */
@@ -37,9 +40,11 @@ public class DispatcherServlet extends HttpServlet {
 		String uri = request.getRequestURI();
 		String filePath = uri.substring(uri.lastIndexOf("/"));
 		
-		//2. 클라이언트의 요청 filePath 에 따라 적절히 분기 처리한다. 
+		/*
+		 * 2. 클라이언트의 요청 filePath 에 따라 적절히 분기 처리한다. 
+		 */
+		//로그인 인증처리 (login.jsp에서 데이터 넘어옴)
 		if(filePath.equals("/login.do")) {
-			//로그인 인증처리 (login.jsp에서 데이터 넘어옴)
 			//Model1의 login_proc.jsp내용이 여기로!
 			System.out.println("로그인 처리됨!");
 			
@@ -56,11 +61,26 @@ public class DispatcherServlet extends HttpServlet {
 			if(user != null) {
 				HttpSession session = request.getSession();
 				session.setAttribute("IdKey", id);
-				System.out.println("로그인 성공");
+				//System.out.println("로그인 성공");
+				response.sendRedirect("getBoardList.do"); //.do로 응답 보내라!
 			}else {
-				System.out.println("로그인 실패");
+				//System.out.println("로그인 실패");
+				response.sendRedirect("login.jsp"); //여긴 jsp로 보내라. 
 			}
 			
+		//getBoardList.do (게시글 목록 보기)
+		}else if(filePath.equals("/getBoardList.do")) {
+			String searchField = "";
+			String searchText = "";
+			
+			if(request.getParameter("searchCondition") != "" && 
+					request.getParameter("searchCondition") != "") {
+				searchField = request.getParameter("searchCondition");
+				searchText = request.getParameter("searchCondition");
+			}
+			
+			BoardDAO boardDAO = new BoardDAO();
+			List<BoardDO> boardList = boardDAO.getBoardList(searchField, searchText);
 		}
 	}
 }
