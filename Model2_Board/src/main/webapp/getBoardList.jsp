@@ -52,16 +52,16 @@
 					<tr>
 						<td align="center">${board.seq}</td>
 						<!-- model2에선 getBoard.do?seq=...이렇게 한다! -->
-						<td align="left"><a href="getBoard.do?seq=${board.seq}">${board.title }</a></td>
+						<td align="left"><a href="getBoard.do?seq=${board.seq}">${board.title}</a></td>
 						<td align="center">${board.writer}</td>
 						<td align="center">${board.regDate}</td>
 						<td align="center">${board.cnt}</td>
 					</tr>
 				</c:forEach>
-				<br><br>
-				<a href="insertBoard.jsp">새 게시글 등록</a>&nbsp;&nbsp;&nbsp;
-				<a href="getBoardList.do">전체 게시글 목록보기</a> <!-- 여기도 do! -->
 			</table>
+			<br><br>
+			<a href="insertBoard.jsp">새 게시글 등록</a>&nbsp;&nbsp;&nbsp;
+			<a href="getBoardList.do">전체 게시글 목록보기</a> <!-- 여기도 do! -->
 		</form>
 	</center>
 </body>

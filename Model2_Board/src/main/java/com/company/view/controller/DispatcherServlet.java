@@ -47,7 +47,7 @@ public class DispatcherServlet extends HttpServlet {
 		if(filePath.equals("/login.do")) {
 			//Model1의 login_proc.jsp내용이 여기로!
 			System.out.println("로그인 처리됨!");
-			
+			 
 			String id=request.getParameter("id");
 			String password=request.getParameter("password");
 			
@@ -74,13 +74,38 @@ public class DispatcherServlet extends HttpServlet {
 			String searchText = "";
 			
 			if(request.getParameter("searchCondition") != "" && 
-					request.getParameter("searchCondition") != "") {
+					request.getParameter("searchKeyword") != "") {
 				searchField = request.getParameter("searchCondition");
-				searchText = request.getParameter("searchCondition");
+				searchText = request.getParameter("searchKeyword");
+				System.out.println("서치 필드는 "+searchField);
+				System.out.println("서치 text는 "+searchText);
 			}
 			
 			BoardDAO boardDAO = new BoardDAO();
 			List<BoardDO> boardList = boardDAO.getBoardList(searchField, searchText);
+		
+			//검색 결과를 세션에 저장 (jsp에서 사용가능)
+			HttpSession session = request.getSession(); //세션하나 얻어와서
+			session.setAttribute("boardList", boardList); //등록해.
+			
+			//포워딩 (응답)
+			response.sendRedirect("getBoardList.jsp"); //포워딩은 jsp로..하는군
+		
+		//게시글 상세보기
+		}else if(filePath.equals("/getBoard.do")) {
+			String seq = request.getParameter("seq");
+			
+			BoardDO boardDO = new BoardDO();
+			boardDO.setSeq(Integer.parseInt(seq));
+			
+			BoardDAO boardDAO = new BoardDAO();
+			BoardDO board = boardDAO.getBoard(boardDO);
+			
+			HttpSession session = request.getSession();
+			session.setAttribute("board", board);
+			
+			//포워딩
+			response.sendRedirect("getBoard.jsp");
 		}
 	}
 }
