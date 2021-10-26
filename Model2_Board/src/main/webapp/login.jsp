@@ -5,6 +5,13 @@
 <head>
 <meta charset="UTF-8">
 <title>login.jsp 페이지</title>
+<style>
+	#div_box{
+		position:absolute;
+		top:10%;
+		left:40%;
+	}
+</style>
 </head>
 <body>
 	<div id="div_box">
