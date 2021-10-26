@@ -106,6 +106,48 @@ public class DispatcherServlet extends HttpServlet {
 			
 			//포워딩
 			response.sendRedirect("getBoard.jsp");
+		
+		//게시글 등록	
+		}else if(filePath.equals("/insertBoard.do")) {
+			String title = request.getParameter("title");
+			String writer = request.getParameter("writer");
+			String content = request.getParameter("content");
+			
+			BoardDO boardDO = new BoardDO();
+			boardDO.setTitle(title);
+			boardDO.setWriter(writer);
+			boardDO.setContent(content);
+			
+			BoardDAO boardDAO = new BoardDAO();
+			boardDAO.insertBoard(boardDO);
+			
+			//포워딩
+			response.sendRedirect("getBoardList.do");
+		
+		//게시글 수정	
+		}else if(filePath.equals("/updateBoard.do")) {
+			request.setCharacterEncoding("UTF-8");
+			String seq = request.getParameter("seq");
+			String title = request.getParameter("title");
+			String content = request.getParameter("content");
+			
+			BoardDO boardDO = new BoardDO();
+			boardDO.setSeq(Integer.parseInt(seq));
+			boardDO.setTitle(title);
+			boardDO.setContent(content);
+			
+			BoardDAO boardDAO = new BoardDAO();
+			boardDAO.updateBoard(boardDO);
+			
+			//포워딩
+			response.sendRedirect("getBoardList.do");
+			
+		//로그아웃	
+		}else if(filePath.equals("/logout.do")) {
+			HttpSession session = request.getSession();
+			session.invalidate();
+			
+			response.sendRedirect("login.jsp");
 		}
 	}
 }
