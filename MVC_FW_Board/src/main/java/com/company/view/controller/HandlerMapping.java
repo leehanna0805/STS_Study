@@ -21,7 +21,7 @@ public class HandlerMapping {
 		
 		//action을 key로 PUT
 		mappings.put("/login.do", new LoginController());
-		mappings.put("/getBoardList", new GetBoardListController());
+		mappings.put("/getBoardList.do", new GetBoardListController());
 		mappings.put("/getBoard.do", new GetBoardController());
 		mappings.put("/insertBoard.do", new InsertBoardController());
 		mappings.put("/updateBoard.do", new UpdateBoardController());
