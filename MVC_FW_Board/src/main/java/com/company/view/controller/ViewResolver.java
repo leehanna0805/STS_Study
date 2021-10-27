@@ -16,7 +16,7 @@ public class ViewResolver {
 	//ex)포워딩 할때 ==> view로 "getBoardList"넘어옴. 
 	//				prefix: "./" 
 	//				suffix: ".jsp" 
-	//	return "./getBoardList.jsp"
+	//	 return "./getBoardList.jsp"
 	public String getView(String viewName) {
 		return prefix + viewName + suffix;
 	}
