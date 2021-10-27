@@ -54,5 +54,8 @@ public class DispatcherServlet extends HttpServlet {
 		
 		//3. 리턴된 Ctonroller를 실행한다.
 		String viewName = ctrl.handleRequest(request, response); //login 컨트롤러의 handleRequest()호출
+		
+		//4. ViewResolver를 통해서 viewName에 해당하는 페이지(포워딩)을 검색한다.
+		
 	}
 }

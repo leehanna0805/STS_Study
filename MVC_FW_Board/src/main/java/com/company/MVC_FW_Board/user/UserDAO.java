@@ -15,7 +15,7 @@ public class UserDAO {
 		//SQL ��ɾ� (prepared statement���)
 		private final String USER_GET = "select id, password from users where id=? and password=?";
 		
-		//�α��� user ��ȸ(select) �޼ҵ� ����
+		//�α��� user ��ȸ(select) �
 		public UserDO getUser(UserDO userObj) {	//login_proc.jsp���� ���
 			UserDO user = null;
 			
