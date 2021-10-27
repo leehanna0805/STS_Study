@@ -56,6 +56,17 @@ public class DispatcherServlet extends HttpServlet {
 		String viewName = ctrl.handleRequest(request, response); //login 컨트롤러의 handleRequest()호출
 		
 		//4. ViewResolver를 통해서 viewName에 해당하는 페이지(포워딩)을 검색한다.
+		String view = null;
+		
+		//로그인 성공시에는 "getBoardList.do" 문자열이 넘어오고, 실패시엔 "login" 문자열이 넘어온다. 
+		if(viewName.contains(".do")) {
+			view = viewName;
+		}else {
+			//실패시엔 접두사+접미사 붙인다.(jsp파일) "./login.jsp"
+			view = viewResolver.getView(viewName);
+		}
+		//포워딩
+		response.sendRedirect(view);
 		
 	}
 }
