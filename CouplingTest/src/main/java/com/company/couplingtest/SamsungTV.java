@@ -1,6 +1,11 @@
 package com.company.couplingtest;
 
 public class SamsungTV implements TV{
+	
+	public SamsungTV() {
+		System.out.println("삼성 티비 객체 생성");
+	}
+	
 	public void powerOn() {
 		System.out.println("SamsungTV 전원 키기");
 	}

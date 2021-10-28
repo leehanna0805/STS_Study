@@ -5,6 +5,10 @@ package com.company.couplingtest;
  */
 
 public class LgTV implements TV{
+	public LgTV() {
+		System.out.println("엘지 티비 객체 생성");
+	}
+	
 	public void powerOn() {
 		System.out.println("lgTV 전원 키기");
 	}
