@@ -22,7 +22,11 @@ public class BoardServiceImpl implements BoardService{
 	private BoardDAO boardDAO;
 	@Autowired
 	private LogAdvice log; //AOP실습용
-	
+	//생성자
+		public BoardServiceImpl() {
+			// TODO Auto-generated constructor stub
+			log = new LogAdvice();
+		}
 	
 	@Override
 	public List<BoardDO> getBoardList(BoardDO boardDO) {
