@@ -11,7 +11,7 @@ import com.company.business.board.BoardService;
  * @Service: 클래스 선언부 위에 붙이면 이 클래스는 비즈니스 로직을 처리하는 클래스임을
  * 			 스프링 컨테이너에 알려줌.
  */
-@Service
+@Service("boardService")
 public class BoardServiceImpl implements BoardService{
 	
 	/*

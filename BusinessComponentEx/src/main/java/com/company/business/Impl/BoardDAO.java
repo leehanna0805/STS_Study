@@ -61,13 +61,12 @@ public class BoardDAO {
 		try {
 			conn = JDBCUtil.getConnection();
 			String INSERT_BOARD = 
-					"insert into board(seq, title, writer, content) "
-					+ "values((select nvl(max(seq),0)+1 from board),?,?,?)";
+					"insert into board(seq, title, writer, content) values ((select nvl(max(seq),0)+1 from board),?,?,?)";
 			pstmt = conn.prepareStatement(INSERT_BOARD);
 			pstmt.setString(1, boardDO.getTitle());
 			pstmt.setString(2, boardDO.getWriter());
 			pstmt.setString(3, boardDO.getContent());
-			pstmt.executeUpdate(INSERT_BOARD);
+			pstmt.executeUpdate();
 			
 		}catch(Exception e){
 			e.printStackTrace();
