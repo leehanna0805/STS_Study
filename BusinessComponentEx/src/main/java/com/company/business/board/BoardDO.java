@@ -9,6 +9,7 @@ public class BoardDO {
 	private int seq;
 	private String title;
 	private String writer;
+	private String content;
 	private Date regdate;
 	private int cnt;
 	
@@ -19,17 +20,19 @@ public class BoardDO {
 	public void setTitle(String title) {this.title = title;}
 	public String getWriter() {return writer;}
 	public void setWriter(String writer) {this.writer = writer;}
+	public String getContent() {return content;}
+	public void setContent(String content) {this.content = content;}
 	public Date getRegdate() {return regdate;}
 	public void setRegdate(Date regdate) {this.regdate = regdate;}
 	public int getCnt() {return cnt;}
 	public void setCnt(int cnt) {this.cnt = cnt;}
 	
+	
 	//Object클래스 메소드 오버라이드 하기
 	@Override
 	public String toString() {
-		return "BoardDO [seq=" + seq + ", title=" + title + ", writer=" + writer + ", regdate=" + regdate + ", cnt="
-				+ cnt + "]";
+		return "BoardDO [seq=" + seq + ", title=" + title + ", writer=" + writer + ", content=" + content + ", regdate="
+				+ regdate + ", cnt=" + cnt + "]";
 	}
-	
 	
 }
