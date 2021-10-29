@@ -13,6 +13,7 @@ import org.springframework.stereotype.Repository;
 /*
  * @Repository: 클래스 선언부 위에 붙이면 이 클래스는 DB연동을 처리하는 클래스임을 
  * 				스프링 컨테이너에 알려줌.
+ * @Component로 줘도 되는데, 개발자에게 이 클래스는 db쓰는걸 알려주려면 @Repository붙이는게 가독성 좋다.
  */
 
 @Repository

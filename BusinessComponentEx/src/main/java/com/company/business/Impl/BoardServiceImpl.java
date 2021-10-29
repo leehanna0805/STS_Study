@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.company.business.board.BoardDO;
 import com.company.business.board.BoardService;
+import com.company.business.common.LogAdvice;
 /*
  * @Service: 클래스 선언부 위에 붙이면 이 클래스는 비즈니스 로직을 처리하는 클래스임을
  * 			 스프링 컨테이너에 알려줌.
@@ -19,9 +20,16 @@ public class BoardServiceImpl implements BoardService{
 	 */
 	@Autowired
 	private BoardDAO boardDAO;
+	@Autowired
+	private LogAdvice log; //AOP실습용
+	
 	
 	@Override
 	public List<BoardDO> getBoardList(BoardDO boardDO) {
+		//log.printLog(); 
+		//AOP실습용. 이렇게 메소드 하나하나에 넣지말고 공통으로 넣으려면?
+		
+		
 		return boardDAO.getBoardList(boardDO);
 	}
 
