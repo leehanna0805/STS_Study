@@ -1,5 +1,7 @@
 package com.company.view.board;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -7,6 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.Controller;
 
 import com.company.Spring_MVC_Board.board.BoardDAO;
+import com.company.Spring_MVC_Board.board.BoardDO;
 
 public class GetBoardListController implements Controller{
 
@@ -30,9 +33,11 @@ public class GetBoardListController implements Controller{
 		//ModelAndView 객체 생성
 		ModelAndView mav = new ModelAndView();
 		
-		//포워딩 (세션에 등록하는 것이 아닌 mav에 등록)
+		//모델 정보 등록(세션에 등록하는 것이 아닌 mav에 등록)
 		mav.addObject("boardList", boardList);
 		
+		//포워딩
+		mav.setViewName("getBoardList");
 		return mav;
 	}
 
