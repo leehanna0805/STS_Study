@@ -1,0 +1,5 @@
+eclipse.preferences.version=1
+encoding//src/main/java/com/company/Spring_MVC_Board/board/BoardDAO.java=UTF-8
+encoding//src/main/java/com/company/Spring_MVC_Board/board/BoardDO.java=UTF-8
+encoding//src/main/java/com/company/Spring_MVC_Board/common/JDBCUtil.java=UTF-8
+encoding//src/main/java/com/company/Spring_MVC_Board/user/UserDAO.java=UTF-8
