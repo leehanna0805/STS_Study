@@ -26,7 +26,7 @@
 	<center>
 		<h3>${IdKey}님 환영합니다.&nbsp;&nbsp;&nbsp;<a href="logout.do">로그아웃</a></h3>
 		<form name="myForm" method="POST" action="getBoardList.do">
-			<p>총 게시글: ${totalList}건</p>
+			<p>총 게시글: ${boardList.size()}건</p>
 			<table border="1" cellpadding="0" cellspacing="0" width="700">
 				<tr>
 					<td align="right">
