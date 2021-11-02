@@ -3,6 +3,7 @@ package com.company.annotation.user;
 public class UserDO {
 	private String id;
 	private String password;
+	private String pwencrypt;
 	private String name;
 	private String role;
 	
@@ -30,6 +31,12 @@ public class UserDO {
 	}
 	public void setRole(String role) {
 		this.role = role;
+	}
+	public String getPwencrypt() {
+		return pwencrypt;
+	}
+	public void setPwencrypt(String pwencrypt) {
+		this.pwencrypt = pwencrypt;
 	}
 	
 	
