@@ -9,26 +9,22 @@ import java.util.List;
 import com.company.annotation.common.JDBCUtil;
 
 public class BoardDAO {
-	// DB���� ���� ����
 	private Connection conn = null;
 	private PreparedStatement pstmt = null;
 	private ResultSet rs = null;
 
-	// ��ü �Խñ� ��� ��ȸ method
-	// searchField = '����'���� �˻��Ҳ���, '�ۼ���'�� �˻��Ҳ���. searchText=�˻� �ؽ�Ʈ
+	
 	public List<BoardDO> getBoardList(String searchField, String searchText){ 
 		System.out.println("===> getBoardList() ��� ó����!");
 		
-		List<BoardDO> boardList = new ArrayList<BoardDO>(); //���� �迭 ��ü ����
+		List<BoardDO> boardList = new ArrayList<BoardDO>(); 
 		
 		try {
 			conn = JDBCUtil.getConnection();
 			
-			// �Խù� �˻� �� '����' or '�ۼ���'�� �˻����� �����ϴ� SQL�����
-			// �˻� ���� ������ ��ü�� �ֽż� �����ؼ� ������. �˻� ���� ������ ���Ǹ°� �����ؼ� ������.
 			String where="";
 			
-			if(searchField != null && searchText != null){  //�Ѿ�°� �ִٸ�
+			if(searchField != null && searchText != null){  
 				where = "where " + searchField + " like '%" + searchText + "%'";
 			
 			}
@@ -38,7 +34,7 @@ public class BoardDAO {
 			pstmt = conn.prepareStatement(Condition_SQL);
 			rs = pstmt.executeQuery();
 			
-			while(rs.next()) { //�Խ��� �۵� �������ϱ� while������ ����
+			while(rs.next()) { 
 				BoardDO board = new BoardDO();
 				board.setSeq(rs.getInt("SEQ"));
 				board.setTitle(rs.getString("TITLE"));
@@ -59,7 +55,6 @@ public class BoardDAO {
 	}
 	//=====================================================================================================================
 	
-	//�Խñ� �󼼺���
 	public BoardDO getBoard(BoardDO boardDO) {
 		System.out.println("===> getBoard() ó����!");
 		
@@ -68,8 +63,8 @@ public class BoardDAO {
 		try {
 			conn=JDBCUtil.getConnection();
 			
-			// �ش� �Խñ��� ��ȸ��(cnt) +1
-			String UPDATE_CNT = "update board set cnt=cnt+1 where seq=?"; //����ǥ���� boardDO��ü�� ����������. ������
+			
+			String UPDATE_CNT = "update board set cnt=cnt+1 where seq=?"; 
 			pstmt = conn.prepareStatement(UPDATE_CNT);
 			pstmt.setInt(1, boardDO.getSeq()); //ù��° ����ǥ�� �־��
 			pstmt.executeUpdate(); //DML�۾����� executeUpdate();
@@ -78,11 +73,11 @@ public class BoardDAO {
 			String BOARD_GET = "select * from board where seq=?";
 			pstmt = conn.prepareStatement(BOARD_GET);
 			pstmt.setInt(1, boardDO.getSeq());
-			rs = pstmt.executeQuery(); //select����� rs�� �ޱ�
+			rs = pstmt.executeQuery(); 
 			
 			if(rs.next()) {
 				board = new BoardDO();
-				board.setSeq(rs.getInt("SEQ")); //db���� ������ �����ͼ� �ʱ�ȭ
+				board.setSeq(rs.getInt("SEQ")); 
 				board.setTitle(rs.getString("TITLE"));
 				board.setWriter(rs.getString("WRITER"));
 				board.setContent(rs.getString("CONTENT"));
@@ -99,7 +94,6 @@ public class BoardDAO {
 	}
 	//====================================================================================================
 	
-	//�Խñ� ���� ó�� �޼ҵ�
 	public void updateBoard(BoardDO boardDO) {
 		System.out.println("===> updateBoard() ó����!");
 	
@@ -121,7 +115,6 @@ public class BoardDAO {
 	}
 	//======================================================================================================
 	
-	//�Խñ� ���� ó�� �޼ҵ�
 	public void deleteBoard(BoardDO boardDO) {
 		System.out.println("===> deleteBoarD() ó����!");
 		
@@ -141,7 +134,6 @@ public class BoardDAO {
 	}
 	//======================================================================================================
 	
-		//�Խñ� �߰� ó�� �޼ҵ�
 		public void insertBoard(BoardDO boardDO) {
 			System.out.println("===> insertBoarD() ó����!");
 			
@@ -149,7 +141,7 @@ public class BoardDAO {
 				conn = JDBCUtil.getConnection();
 				
 				String BOARD_INSERT="insert into board(seq, title, writer, content) "
-						+ "values((select nvl(max(seq),0)+1 from board),?,?,?)"; //nvl�Լ� �̿��ؼ� �Խñ� ��ȣ ����
+						+ "values((select nvl(max(seq),0)+1 from board),?,?,?)"; 
 				pstmt = conn.prepareStatement(BOARD_INSERT);
 				pstmt.setString(1, boardDO.getTitle());
 				pstmt.setString(2, boardDO.getWriter());

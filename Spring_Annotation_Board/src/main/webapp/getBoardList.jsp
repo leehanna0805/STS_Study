@@ -1,20 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" errorPage="error.jsp"%>
     
-<%@ page errorPage="error.jsp" %>
-<%@ page import="com.company.annotation.board.BoardDO" %>
-<%@ page import="com.company.annotation.board.BoardDAO" %>
-<%@ page import="java.util.List" %>
+<%@ page import = "com.company.annotation.board.BoardDO"%>
+<%@ page import = "com.company.annotation.board.BoardDAO"%>
+<%@ page import = "java.util.List"%>
 
-<%
-	//서블릿의 login.do 에서 인증성공하면 세션에?? 아닌디.
-	List<BoardDO> boardList = (List)session.getAttribute("boardList");
-%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <%
-	int totalList = boardList.size();
-	request.setAttribute("totalList", totalList);
+	String searchField = null;
+	String searchText = null;
+	
+	if(request.getParameter("searchCondition")!=null && request.getParameter("searchKeyword")!=null){
+		searchField = request.getParameter("searchCondition");
+		searchText = request.getParameter("searchKeyword");
+	}
+	
+	BoardDAO boardDAO = new BoardDAO();
+	List<BoardDO> boardList = boardDAO.getBoardList(searchField, searchText);
+	request.setAttribute("boardList", boardList);
 %>
 <!DOCTYPE html>
 <html>
@@ -24,7 +28,7 @@
 </head>
 <body>
 	<center>
-		<h3>${IdKey}님 환영합니다.&nbsp;&nbsp;&nbsp;<a href="logout.do">로그아웃</a></h3>
+		<h3>${userName}님 환영합니다.&nbsp;&nbsp;&nbsp;<a href="logout.do">로그아웃</a></h3>
 		<form name="myForm" method="POST" action="getBoardList.do">
 			<p>총 게시글: ${totalList}건</p>
 			<table border="1" cellpadding="0" cellspacing="0" width="700">

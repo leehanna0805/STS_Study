@@ -14,7 +14,7 @@ public class UserDAO {
 		private ResultSet			rs = null;
 		
 		
-		private final String USER_GET = "select id, password from users where id=? and password=?";
+		private final String USER_GET = "select * from users where id=? and password=?";
 		
 		 // [추가] 회원가입시 패스워드를 암호화시킨 데이터를 저장할 참조변수 선언
 		String pwEncrypt;
