@@ -7,37 +7,45 @@ import java.sql.ResultSet;
 import com.company.annotation.common.JDBCUtil;
 
 public class UserDAO {
-	//DB ���� ���� ����
+	
 		private Connection			conn = null;
 		private PreparedStatement	pstmt = null;
 		private ResultSet			rs = null;
 		
-		//SQL ��ɾ� (prepared statement���)
+		
 		private final String USER_GET = "select id, password from users where id=? and password=?";
 		
-		//�α��� user ��ȸ(select) �
-		public UserDO getUser(UserDO userObj) {	//login_proc.jsp���� ���
+		 // [추가] 회원가입시 패스워드를 암호화시킨 데이터를 저장할 참조변수 선언
+		String pwEncrypt;
+		private final String USERS_INSERT = "insert into users values(?,?,?,?,?)"; //회원가입 SQL
+		
+		
+		
+		
+		
+		public UserDO getUser(UserDO userObj) {	
 			UserDO user = null;
 			
 			try {
-				System.out.println("===> JDBC�� getUser() ��� ó����!");
-				conn = JDBCUtil.getConnection(); //���� ��ü ������
+				System.out.println("===> USER DAO의 get user");
+				conn = JDBCUtil.getConnection(); 
 				
-				pstmt = conn.prepareStatement(USER_GET); //�Ķ���ͷ� prepared statement�ֱ�
-				pstmt.setString(1, userObj.getId()); //1��° ����ǥ�� ����(�Ѿ�� ��ü�� id)
-				pstmt.setString(2, userObj.getPassword()); //2��° ����ǥ�� ����(�Ѿ�� ��ü�� pw)
+				pstmt = conn.prepareStatement(USER_GET); 
+				pstmt.setString(1, userObj.getId()); 
+				pstmt.setString(2, userObj.getPassword()); 
 				
-				rs = pstmt.executeQuery(); //select�� executeQuery�� ����
-				if(rs.next()) { //����ó���� �ƴٸ� ��ü�� �����ϰ� ������.
+				rs = pstmt.executeQuery(); 
+				if(rs.next()) {
 					user = new UserDO();
-					user.setId(rs.getString("ID")); //db�� ȸ�� id������ �ʱ�ȭ�ض�
+					user.setId(rs.getString("ID")); 
 					user.setPassword(rs.getString("PASSWORD"));
+					user.setName(rs.getString("NAME"));
+					user.setRole(rs.getString("ROLE"));
 				}
 				
 			}catch(Exception e) {
 				e.printStackTrace();
 			}finally {
-				//�ڿ�����
 				JDBCUtil.close(rs, pstmt, conn);
 			}
 			return user;

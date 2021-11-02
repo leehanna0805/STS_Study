@@ -39,6 +39,4 @@ public class UserDO {
 		this.pwencrypt = pwencrypt;
 	}
 	
-	
-	
 }
