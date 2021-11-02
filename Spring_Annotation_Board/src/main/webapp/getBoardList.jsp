@@ -7,19 +7,6 @@
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<%
-	String searchField = null;
-	String searchText = null;
-	
-	if(request.getParameter("searchCondition")!=null && request.getParameter("searchKeyword")!=null){
-		searchField = request.getParameter("searchCondition");
-		searchText = request.getParameter("searchKeyword");
-	}
-	
-	BoardDAO boardDAO = new BoardDAO();
-	List<BoardDO> boardList = boardDAO.getBoardList(searchField, searchText);
-	request.setAttribute("boardList", boardList);
-%>
 <!DOCTYPE html>
 <html>
 <head>
