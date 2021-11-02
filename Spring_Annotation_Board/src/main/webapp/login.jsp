@@ -15,7 +15,7 @@
 </style>
 </head>
 <body>
-	<div id="div box">
+	<div id="div_box">
 		<h1>로그인</h1>
 		<form name="loginForm" action="login.do">
 			<table border="1" cellpading="0" cellspacing="0">
@@ -28,9 +28,8 @@
 					<td bgcolor="orange">패스워드</td>
 					<td><input type="password" name="password"/></td>
 				</tr>
-				
 				<tr>
-					<td>
+					<td colspan="2" align="center">
 						<input type="submit" value="로그인"/>
 					</td>
 				</tr>
