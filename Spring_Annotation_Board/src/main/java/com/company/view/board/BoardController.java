@@ -35,4 +35,23 @@ public class BoardController { //통합 컨트롤러
 	/*
 	 * DML 작업시엔 BoardDO, BoardDAO 만 커맨드 객체로 받으면 된다! 
 	 */
+	//게시글 등록
+	@RequestMapping("/insertBoard.do")
+	public String insertBoard(BoardDO boardDO, BoardDAO boardDAO) {
+		boardDAO.insertBoard(boardDO);
+		return "getBoardList.do"; //변경된 table에 반영된걸 다시 뿌려주라! 그러니까 .do
+	}
+	//게시글 삭제
+	@RequestMapping("/deleteBoard.do")
+	public String deleteBoard(BoardDO boardDO, BoardDAO boardDAO) {
+		boardDAO.deleteBoard(boardDO);
+		return "getBoardList.do";
+	}
+	
+	//게시글 수정
+	@RequestMapping("/updateBoard.do")
+	public String updateBoard(BoardDO boardDO, BoardDAO boardDAO) {
+		boardDAO.updateBoard(boardDO);
+		return "getBoardList.do";
+	}
 }
