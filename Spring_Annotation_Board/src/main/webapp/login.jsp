@@ -36,7 +36,8 @@
 				</tr>
 			</table>
 		</form>
+		<br>
+		<span><a href="insertUser.jsp">회원가입</a></span>
 	</div>
 </body>
 </html>
-```
