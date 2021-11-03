@@ -1,7 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd">
 
-
+<!-- 
+	스프링과 Mybatis를 연동하려면 우선 스프링 환경 설정에 SqlSessionFactoryBean클래스를 Bean등록해야 한다. 
+	그래야 DB연동에 사용할 SqlSession객체를 얻을 수 있다.
+ 	
+ 	기본패키지의 com.company.annotation 하위에 user, common, board 패키지 있음. 얘냬를 컨테이너로 자동생성해라-->
+	<context:component-scan base-package="com.company.annotation"></context:component-scan>
+	
+	<!-- 컬렉션 객체를 필요할때마다 생성하지 않고, 미리 컬렉션 객체를 일정량 만든 후 요청이 들어오면 Connection pool에서 하나의 커넥션객체를 제공한다. 
+		끝나면 반납한다. 서버의 과부하를 줄인다! -->
+	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
+		<property name="driverClassName" value="org.h2.Driver"></property>
+		<property name="jdbcUrl" value="jdbc:h2:tcp://localhost/~/test"></property>
+		<property name="username" value="sa"></property> <!-- h2 db id -->
+		<property name="password" value=""></property>	 <!-- db pw -->
+	</bean>
+	
 </beans>
