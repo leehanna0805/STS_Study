@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" isErrorPage="true"%>
+    pageEncoding="UTF-8""%>
 <%@ page isErrorPage="true"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,9 +21,10 @@
 			</tr>
 			<tr>
 				<td>${now}
-					<p>요청실패 URI : ${pageContext.errorData.requestURI } 
-						상태코드 :	${pageContext.errorData.statusCode } 
-						예외유형 : ${pageContext.errorData.throwable }
+					<p>
+					요청실패 URI : ${pageContext.errorData.requestURI } 
+					상태코드 :	${pageContext.errorData.statusCode } 
+					예외유형 : ${pageContext.errorData.throwable }
 					</p>
 				</td>
 			</tr>

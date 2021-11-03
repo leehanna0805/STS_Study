@@ -4,5 +4,7 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans 
 						http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-
+	<!-- 삼성tv객체를 id tv로 접근하겠다. -->
+	<bean id="tv" class="com.company.couplingtest.SamsungTV"/> 
+	
 </beans>
