@@ -8,7 +8,7 @@ import com.company.annotation.user.UserDO;
 
 @Controller
 public class UserController {
-	
+
 	@RequestMapping("/insertUser.do")
 	public String insertUser(UserDO userDO, UserDAO userDAO) {
 		userDAO.insertUser(userDO);

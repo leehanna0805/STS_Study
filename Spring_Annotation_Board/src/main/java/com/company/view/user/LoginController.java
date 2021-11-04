@@ -1,4 +1,3 @@
-
 package com.company.view.user;
 
 import javax.servlet.http.HttpSession;
@@ -10,26 +9,23 @@ import com.company.annotation.user.UserDAO;
 import com.company.annotation.user.UserDO;
 
 @Controller
-public class LoginController {	//Controller 클래스는 POJO 클래스로 구현한다!
+public class LoginController {	// Controller 클래스는 POJO 클래스로 구현한다!!
 	
 	/*
-	 * @RequestMapping: 요청(login.do)에 대해 어떤 Controller, 어떤 메소드가 처리할지를 맵핑하기 위한 어노테이션
-	 * 					요청 URL 을 어떤 메소드가 처리할지 결정해줘야 한다.
+	 * @RequestMapping 어노테이션은 요청 URL을 어떤 메소드가 처리할지 여부를 결정한다.
 	 */
 	@RequestMapping("/login.do")
-	public String login(UserDO userDO, UserDAO userDAO, HttpSession session) { //객체 생성은 스프링이 해줌. 바로 쓰면 돼.
+	public String login(UserDO userDO, UserDAO userDAO, HttpSession session) {
 		UserDO user = userDAO.getUser(userDO);
 		
-		if(user!= null) {
-			System.out.println("로그인 성공");
+		if (user != null) {
 			session.setAttribute("userName", user.getName());
+			System.out.println("로그인 성공");
 			return "getBoardList.do";
-		}else {
+		} else {
 			System.out.println("로그인 실패");
 			return "login.jsp";
 		}
 	}
-	
+
 }
-
-

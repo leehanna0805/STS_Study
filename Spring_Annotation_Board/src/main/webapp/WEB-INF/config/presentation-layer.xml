@@ -7,12 +7,12 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd">
 
-	<!-- com.company.view 베이스 패키지의 하위 패키지인 view.board, view.user 패키지에 있는
-			모든 클래스를 스캔하여 스프링 컨테이너가 객체를 자동으로 생성한다. 
-			필요 시 인젝션(주입) 하겠다 의미 -->
+	<!-- com.company.view 이 베이스-패키지의 하위 패키지인 com.company.view.board, 
+												  com.company.view.user 패키지에 있는
+							모든 클래스를 스캔하여 스프링 컨테이너가 객체를 자동으로 생성한다.
+							필요 시 인젝션(주입) 하겠다 의미 
+	-->
 	<context:component-scan base-package="com.company.view"></context:component-scan>
-	<!-- HandelrMapping, Controller 등록을 이 한줄로 끝낸것 !!! -->
-	
-	<!-- Json형식으로 게시글 목록 변환처리 하기 위해서. index.jsp에 (dataTransform.do) -->
+
 	<mvc:annotation-driven></mvc:annotation-driven>
 </beans>

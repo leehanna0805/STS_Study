@@ -7,7 +7,7 @@ public class UserDO {
 	private String name;
 	private String role;
 	
-	//getter setter
+	// getter, setter 메소드
 	public String getId() {
 		return id;
 	}
